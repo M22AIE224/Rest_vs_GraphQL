@@ -12,7 +12,7 @@ class RestApiUser(HttpUser):
 
     @task(1)
     def get_movie_by_years(self):
-        self.client.get("/moviesforyears/5") 
+        self.client.get("/moviesforyears/1") 
 
 
-#locust --host=http://localhost:5000
+# python3 -m locust --host=http://127.0.0.1:5000

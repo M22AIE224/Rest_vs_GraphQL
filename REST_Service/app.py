@@ -53,6 +53,25 @@ def get_movies_by_years(years):
     movies_list = fetch_movies_by_years(years) #(fetch_movies_by_year)
     return render_template('movies.html', movies=movies_list)
 
+
+###########################################################################
+# Its a REST Routing function which can be called as http://localhost/performancebyyears/<years>
+# The purpose of the function is to generate and display a performance plot 
+# for movies released over specified number of years.
+
+# Parameters:
+# - years (str): A number of years for which to fetch and analyze movie performance data, 
+#   passed as a URL parameter.
+
+# Process:
+# - Calls `plot_movies_performance` function with the `years` parameter to generate a plot showing 
+#   the performance of movies over the specified number of years.
+# - Receives the file path of the generated plot.
+# - Renders the 'performance.html' template with the plot file path as `plot_url`.
+
+# Returns:
+# - A rendered HTML page displaying the performance plot for the specified years.
+###########################################################################
 @app.route('/performancebyyears/<years>')
 def movies_performance(years):
     #num_year = 5  # Define the number of years to fetch data for

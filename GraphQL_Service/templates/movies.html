@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #8c4caf;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        td {
+            font-size: 0.9rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #eaf3f8;
+        }
+
+        td img {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 100px;
+            height: auto;
+        }
+
+        .no-movies {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Actors</th>
+                <th>Plot</th>
+                <th>Language</th>
+                <th>Country</th>
+                <th>Awards</th>
+                <th>Poster</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.genre | join(", ") }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.actors | join(", ") }}</td>
+                <td>{{ movie.plot }}</td>
+                <td>{{ movie.language }}</td>
+                <td>{{ movie.country }}</td>
+                <td>{{ movie.awards }}</td>
+                <td>
+                    {% if movie.poster %}
+                    <img src="{{ movie.poster }}" alt="Poster">
+                    {% else %}
+                    No poster available
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="10" class="no-movies">No movies found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

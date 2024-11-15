@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List </title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie List [Count - {{ movie_count }}] Time Taken - {{ time_taken }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>Actors</th>
+                <th>Plot</th>
+                <th>Language</th>
+                <th>Country</th>
+                <th>Awards</th>
+                <th>Poster</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.genre }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.actors }}</td>
+                <td>{{ movie.plot }}</td>
+                <td>{{ movie.language }}</td>
+                <td>{{ movie.country }}</td>
+                <td>{{ movie.awards }}</td>
+                <td>
+                    {% if movie.poster != 'N/A' %}
+                    <img src="{{ movie.poster }}" alt="Poster" width="100">
+                    {% else %}
+                    No poster available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
